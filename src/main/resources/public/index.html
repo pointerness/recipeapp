@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>My Recipes</title>
+    <link href='https://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="styles/unsemantic-grid-responsive.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.10/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.2.0/ui-bootstrap-tpls.min.js"></script>
+</head>
+<body>
+<div id="app" ng-app="recipeAppModule" ng-controller="RecipeAppController" ng-init="init()">
+    <div class="grid-container">
+        <div class="grid-100">
+            <h1>
+                <img src="images/chefbot.svg" height="60px">
+                <br>
+                My Recipes
+            </h1>
+        </div>
+        <!--Add div Begins -->
+        <div class="grid-100" id="addRecipe">
+            <div class="recipes">
+                <div class="grid-100 row controls">
+                    <div class="grid-70">
+                        <div class="flush-right">
+                            <button ng-click="clearForm()">+ Add Recipe</button>
+                            <div clss="grid-100" row>
+                                <button ng-click="deleteRecipe()">- Delete Recipe</button>
+                            </div>
+                            <div class="grid-l00">
+                                <div class="grid-20">
+                                    <p class="label-spacing">
+                                        <label> Recipies </label>
+                                    </p>
+                                </div>
+                                <div class="grid-70">
+                                    <select ng-model="recipe.id" ng-options="recipe.name for recipe in recipies" ng-change="getRecipe(recipe.id)">
+                                        <option value="recipe">-- choose a recipe --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid-100 row">
+                                <div class="grid-20">
+                                    <p class="label-spacing">
+                                        <label> Name </label>
+                                    </p>
+                                </div>
+                                <div class="grid-70">
+                                    <p>
+                                        <input type="text" ng-model="recipeName" name="name" required>
+                                    </p>
+                                </div>
+                                <div class="grid-100 row">
+                                    <div class="grid-100">
+                                        <p class="label-spacing">
+                                            <label> Description </label>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="grid-100">
+                                    <p>
+                                        <textarea ng-model="description" name="description" required></textarea>
+                                    </p>
+                                </div>
+                                <div class="grid-100 row">
+                                    <div class="grid-100">
+                                        <p class="label-spacing">
+                                            <label> Ingredients </label>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="grid-100">
+                                    <p>
+                                        <textarea ng-model="ingredients" name="ingredients" required></textarea>
+                                    </p>
+                                </div>
+                                <div class="grid-100">
+                                    <p class="label-spacing">
+                                        <label> Category </label>
+                                    </p>
+                                    <div class="grid-100 row">
+                                        <label class="label-display"><input type="radio" name="type" ng-value="true"
+                                                                            class="grid-20" ng-model="vegetarian"/>Vegetarian</label>
+                                        <label class="label-display"><input type="radio" name="type" ng-value="false"
+                                                                            class="grid-20" ng-model="vegetarian"/>Non
+                                            Vegetarian</label>
+                                    </div>
+                                </div>
+                                <div class="grid-100">
+                                    <div class="grid-60">
+                                        <p class="label-spacing">
+                                            <label> Upload Dish Image </label>
+                                        </p>
+                                    </div>
+                                    <div class="grid-100 row grid-no-border">
+                                        <input type="file" name="pic" accept="image/*">
+                                    </div>
+                                    <div class="grid-100 row grid-no-borde">
+                                        <input type="submit" value="Save Recipe" ng-click="saveRecipe()">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Add div ends -->
+        <div class="grid-100" id="showRecipe">
+        </div>
+
+
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/angular-module.js"></script>
+
+</body>
+
+</html>
