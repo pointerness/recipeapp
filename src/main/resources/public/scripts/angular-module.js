@@ -6,12 +6,16 @@ app.config(['$qProvider', function ($qProvider) {
 
 app.controller('RecipeAppController', function($http, $location, $uibModal, $scope) {
     $scope.modified=false;
+    $scope.latestRecipe={};
+    $scope.recipe = {};
     $scope.init = function () {
+
         $http.get('api/recipies').then(function (response){
             if(response){
                 console.info('response :: '+response.data[0]);
                 $scope.recipies = response.data;
                 recipe1 = this.recipies[1];
+                $scope.recipe=$scope.latestRecipe;
             }
         },function (error) {
             $scope.responseMsg = "Service not Exists";
@@ -40,7 +44,8 @@ app.controller('RecipeAppController', function($http, $location, $uibModal, $sco
                 $scope.init();
                 $scope.modified=true;
                 alert("Successfully  saved recipe " + response.data.name);
-                $scope.recipe.id = response.data.id;
+                $scope.latestRecipe = response.data;
+                $scope.clearForm();
             },function(error){
                 console.info("Failed Sav ing Recipe");
             });
@@ -59,7 +64,7 @@ app.controller('RecipeAppController', function($http, $location, $uibModal, $sco
                 $scope.init();
                 $scope.modified=true;
                 alert("Successfully  saved recipe " + response.data.name);
-
+                $scope.clearForm();
             },function(error){
                 console.info("Failed Sav ing Recipe");
             });
@@ -72,6 +77,7 @@ app.controller('RecipeAppController', function($http, $location, $uibModal, $sco
         $scope.vegetarian = null;
         $scope.ingredients = null;
         $scope.modified=false;
+        $scope.latestRecipe={};
     }
     $scope.getRecipe = function(recipeId){
         console.info(recipeId);
