@@ -11,15 +11,15 @@
 * The application uses SpringBoot to simplify deployment process
 * SpringData with JPA is the framework for the persistence layer
 
-##Running the application
+### Running the application
 To run the applicaion use mvnw spring-boot:run
 
-##Bypasing Proxy
+### Bypasing Proxy
 If behind a proxy the proxy can be configured as
 set MAVEN_OPTS=-Dhttp.proxyHost=proxyhost -Dhttp.proxyPort=8080 -Dhttps.proxyHost=proxyhost -Dhttps.proxyPort=8080
 
 
-##TODO
+### TODO
 * Convert the image into a base 64 string url. This will simplify the persistence and rendering
 * Other alternative is to persist the file in Azure file storage or AWS S3 bucket
 * Add a lookup for the ingredients
